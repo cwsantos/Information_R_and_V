@@ -5,8 +5,8 @@ import scrapy
 class SantosChristopherSpider(scrapy.Spider):
     name = 'santos_christopher'
     start_urls = [
-        'http://http://www.cs.utep.edu/makbar/A3/A2.html'
-    ]
+        'http://www.cs.utep.edu/makbar/A3/A2.html'
+        ]
 
     def start_requests(self):
         for url in self.start_urls:
