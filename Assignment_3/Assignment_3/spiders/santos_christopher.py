@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-
 class SantosChristopherSpider(scrapy.Spider):
     name = 'santos_christopher'
-    start_urls = [
-        'http://www.cs.utep.edu/makbar/A3/A2.html'
-        ]
+    start_urls = {
+        'http://www.cs.utep.edu/makbar/A3/A2.html':True
+    }
 
     def start_requests(self):
         for url in self.start_urls:
@@ -15,5 +14,6 @@ class SantosChristopherSpider(scrapy.Spider):
     def parse(self, response):
         output = "santos_christopher.txt"
         with open(output, 'wb') as o:
-            o.write(response.body)
-        self.log('Saved file to %s' % output)
+            for link in response.xpath('//a/@href'):
+                self.log('Link found: %s' % link)
+        self.log('Spider has stopped crawling...')
